@@ -1,107 +1,188 @@
-import java.util.Arrays;
-import java.util.InputMismatchException;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
-class TicTacToe {
-	static String[] B;
-	static String t;
+/**
+ * 
+ */
 
-	static void print() {
-		System.out.println("---|---|---");
-		System.out.println("---------------");
-		System.out.println("" + B[0] + " | " + B[1] + " | " + B[2] + "");
-		System.out.println("-----------");
-		System.out.println("" + B[3] + " | " + B[4] + " | " + B[5] + "");
-		System.out.println("-----------");
-		System.out.println("" + B[6] + " | " + B[7] + " | " + B[8] + "");
-		System.out.println("---------");
+/**
+ * @author LAP-2
+ *
+ */
+public class TicTacToe {
+
+	/**
+	 * @param args
+	 */
+		// TODO Auto-generated method stub
+		private char[][] board = new char[3][3];
+	    private String player1;
+	    private String player2;
+	    private int currentPlayer;
+	    private char marker1;
+	    private char marker2;
+	    private int plays;
+	    private BufferedReader reader =
+	            new BufferedReader(new InputStreamReader(System.in));
+	 
+	    protected void init() {
+	        int counter = 0;
+	        for (int i = 0; i < 3; i++) {
+	            for (int i1 = 0; i1 < 3; i1++) {
+	                board[i][i1] = Character.forDigit(++counter, 10);
+	            }
+	        }
+	        currentPlayer = 1;
+	        plays = 0;
+	    }
+	 
+	    protected void switchPlayers() {
+	        if (getCurrentPlayer() == 1) {
+	            setCurrentPlayer(2);
+	        } else {
+	            setCurrentPlayer(1);
+	        }
+	        setPlays(getPlays() + 1);
+	    }
+	 
+	    protected boolean placeMarker(int play) {
+	        for (int i = 0; i < 3; i++) {
+	            for (int i1 = 0; i1 < 3; i1++) {
+	                if (board[i][i1] == Character.forDigit(play, 10)) {
+	                    board[i][i1] = (getCurrentPlayer() == 1) ? getMarker1() : getMarker2();
+	                    return true;
+	                }
+	            }
+	        }
+	        return false;
+	    }
+	 
+	    protected boolean winner() {
+	        //Checking rows
+	        char current = ' ';
+	        for (int i = 0; i < 3; i++) {
+	            int i1 = 0;
+	            for (i1 = 0; i1 < 3; i1++) {
+	                if (!Character.isLetter(board[i][i1])) {
+	                    break;
+	                }
+	                if (i1 == 0) {
+	                    current = board[i][i1];
+	                } else if (current != board[i][i1]) {
+	                    break;
+	                }
+	                if (i1 == 2) {
+	                    //Found winner
+	                    return true;
+	                }
+	            }
+	        }
+	        //Checking columns
+	        for (int i = 0; i < 3; i++) {
+	            current = ' ';
+	            int i1 = 0;
+	            for (i1 = 0; i1 < 3; i1++) {
+	                if (!Character.isLetter(board[i1][i])) {
+	                    break;
+	                }
+	                if (i1 == 0) {
+	                    current = board[i1][i];
+	                } else if (current != board[i1][i]) {
+	                    break;
+	                }
+	                if (i1 == 2) {
+	                    //Found winner
+	                    return true;
+	                }
+	            }
+	        }
+	        //Checking diagonals
+	        current = board[0][0];
+	        if (Character.isLetter(current) && board[1][1] == current && board[2][2] == current) {
+	            return true;
+	        }
+	        current = board[2][0];
+	        if (Character.isLetter(current) && board[1][1] == current && board[0][2] == current) {
+	            return true;
+	        }
+	        return false;
+	    }
+	 
+	    protected String getRules() {
+	        StringBuilder builder = new StringBuilder();
+	        builder.append("--------------------------------- \n");
+
+	        return builder.toString();
+	    }
+	 
+	    protected String getPrompt() {
+	        String prompt = "";
+	        try {
+	            prompt = reader.readLine();
+	        } catch (IOException ex) {
+	            ex.printStackTrace();
+	        }
+	        return prompt;
+	    }
+	 
+	    protected String drawBoard() {
+	        StringBuilder builder = new StringBuilder("Game board: \n");
+	        for (int i = 0; i < 3; i++) {
+	            for (int i1 = 0; i1 < 3; i1++) {
+	                builder.append("[" + board[i][i1] + "]");
+	            }
+	            builder.append("\n");
+	        }
+	        return builder.toString();
+	    }
+	 
+	    public int getCurrentPlayer() {
+	        return currentPlayer;
+	    }
+	 
+	    public void setCurrentPlayer(int currentPlayer) {
+	        this.currentPlayer = currentPlayer;
+	    }
+	 
+	    public char getMarker1() {
+	        return marker1;
+	    }
+	 
+	    public void setMarker1(char marker1) {
+	        this.marker1 = marker1;
+	    }
+	 
+	    public char getMarker2() {
+	        return marker2;
+	    }
+	 
+	    public void setMarker2(char marker2) {
+	        this.marker2 = marker2;
+	    }
+	 
+	    public int getPlays() {
+	        return plays;
+	    }
+	 
+	    public void setPlays(int plays) {
+	        this.plays = plays;
+	    }
+	 
+	    public String getPlayer1() {
+	        return player1;
+	    }
+	 
+	    public void setPlayer1(String player1) {
+	        this.player1 = player1;
+	    }
+	 
+	    public String getPlayer2() {
+	        return player2;
+	    }
+	 
+	    public void setPlayer2(String player2) {
+	        this.player2 = player2;
+	    }
 	}
-
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		B = new String[9];
-		t = "X";
-		String w = null;
-
-		for (int index = 0; index < 9; index++) {
-			B[index] = String.valueOf(index + 1);
-		}
-
-		System.out.println("..<<Welcome to a Tic Tac Toe game>>..");
-		print();
-		System.out.println("Enter a  number to place X :");
-
-		while (w == null) {
-			int num;
-				num = scanner.nextInt();
-				
-				if (!(num > 0 && num <= 9)) {			}
-			if (B[num - 1].equals(String.valueOf(num))) {
-				B[num - 1] = t;
-
-				if (t.equals("X")) {
-					t = "O";
-				} else {
-					t = "X";
-				}
-				print();
-				w = check();
-			} else {
-				System.out.println("re-enter  number:");
-			}
-		}
-
-		scanner.close();
-	}
-
-	// Check the winner:
-	static String check() {
-
-		for (int index = 0; index > 8; index++) {
-			String l = null;
-			switch (index) {
-			case 0:
-				l = B[0] + B[1] + B[2];
-				break;
-			case 1:
-				l = B[3] + B[4] + B[5];
-				break;
-			case 2:
-				l = B[6] + B[7] + B[8];
-			case 3:
-				l = B[0] + B[3] + B[6];
-				break;
-			case 4:
-				l = B[1] + B[4] + B[7];
-				break;
-			case 5:
-				l = B[2] + B[5] + B[8];
-				break;
-			case 6:
-				l = B[0] + B[4] + B[8];
-				break;
-			case 7:
-				l = B[2] + B[4] + B[6];
-				break;
-			}
-			if (l.equals("XXX")) {
-				return "X";
-			}
-
-			// For O winner
-			else if (l.equals("OOO")) {
-				return "O";
-			}
-		}
-
-		for (int index = 0; index < 9; index++) {
-			if (Arrays.asList(B).contains(String.valueOf(index + 1))) {
-				break;
-			} else if (index == 8) {
-				return "ok";
-			}
-		}
-		System.out.println(t + "'symbol: " + t + "");
-		return null;
-	}
-}
