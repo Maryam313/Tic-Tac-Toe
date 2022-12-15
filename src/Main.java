@@ -11,7 +11,7 @@ public class Main {
 	        game.setPlayer2(game.getPrompt());
 	        boolean markerOk = false;
 	        while (!markerOk) {
-	            System.out.print("Select any letter as " + game.getPlayer1() + "'s marker: ");
+	            System.out.print("Select any letter as " + game.getPlayer1() + "': ");
 	            String marker = game.getPrompt();
 	            if (marker.length() == 1 &&
 	                    Character.isLetter(marker.toCharArray()[0])) {
@@ -23,7 +23,7 @@ public class Main {
 	        }
 	        markerOk = false;
 	        while (!markerOk) {
-	            System.out.print("Select any letter as " + game.getPlayer2() + "'s marker: ");
+	            System.out.print("Select any letter as " + game.getPlayer2() + "': ");
 	            String marker = game.getPrompt();
 	            if (marker.length() == 1 &&
 	                    Character.isLetter(marker.toCharArray()[0])) {
@@ -50,19 +50,19 @@ public class Main {
 	                player = game.getCurrentPlayer() == 1 ? game.getPlayer1() : game.getPlayer2();
 	                boolean validPick = false;
 	                while (!validPick) {
-	                    System.out.print("It is " + player + "'s turn. Pick a square: ");
+	                    System.out.print("It is " + player + "'Please enter the number: ");
 	                    String square = game.getPrompt();
 	                    if (square.length() == 1 && Character.isDigit(square.toCharArray()[0])) {
 	                        int pick = 0;
 	                        try {
 	                            pick = Integer.parseInt(square);
 	                        } catch (NumberFormatException e) {
-	                            //Do nothing here, it'll evaluate as an invalid pick on the next row.
+	                    // it'll evaluate as an invalid pick on the next row.
 	                        }
 	                        validPick = game.placeMarker(pick);
 	                    }
 	                    if (!validPick) {
-	                        System.out.println("Square can not be selected. Retry");
+	                        System.out.println("can not be selected!!");
 	                    }
 	                }
 	                game.switchPlayers();
@@ -76,7 +76,7 @@ public class Main {
 	                System.out.println("Game Over - Draw");
 	            }
 	            System.out.println();
-	            System.out.print("Play again? (Y/N): ");
+	            System.out.print("Play again? (Y OR N): ");
 	            String choice = game.getPrompt();
 	            if (!choice.equalsIgnoreCase("Y")) {
 	                continuePlaying = false;

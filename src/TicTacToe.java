@@ -38,7 +38,7 @@ public class TicTacToe {
 	        plays = 0;
 	    }
 	 
-	    protected void switchPlayers() {
+	     void switchPlayers() {
 	        if (getCurrentPlayer() == 1) {
 	            setCurrentPlayer(2);
 	        } else {
@@ -47,7 +47,7 @@ public class TicTacToe {
 	        setPlays(getPlays() + 1);
 	    }
 	 
-	    protected boolean placeMarker(int play) {
+	     boolean placeMarker(int play) {
 	        for (int i = 0; i < 3; i++) {
 	            for (int i1 = 0; i1 < 3; i1++) {
 	                if (board[i][i1] == Character.forDigit(play, 10)) {
@@ -59,7 +59,7 @@ public class TicTacToe {
 	        return false;
 	    }
 	 
-	    protected boolean winner() {
+	     boolean winner() {
 	        //Checking rows
 	        char current = ' ';
 	        for (int i = 0; i < 3; i++) {
@@ -117,7 +117,7 @@ public class TicTacToe {
 	        return builder.toString();
 	    }
 	 
-	    protected String getPrompt() {
+	     String getPrompt() {
 	        String prompt = "";
 	        try {
 	            prompt = reader.readLine();
@@ -127,7 +127,7 @@ public class TicTacToe {
 	        return prompt;
 	    }
 	 
-	    protected String drawBoard() {
+	     String drawBoard() {
 	        StringBuilder builder = new StringBuilder("Game board: \n");
 	        for (int i = 0; i < 3; i++) {
 	            for (int i1 = 0; i1 < 3; i1++) {
@@ -138,6 +138,7 @@ public class TicTacToe {
 	        return builder.toString();
 	    }
 	 
+	     //Getter and Setter 
 	    public int getCurrentPlayer() {
 	        return currentPlayer;
 	    }
