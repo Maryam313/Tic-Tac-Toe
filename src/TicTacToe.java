@@ -116,16 +116,16 @@ public class TicTacToe {
 
 		return builder.toString();
 	}
-//
-//	String getPrompt() {
-	//	String prompt = "";
-		//try {
-			//prompt = reader.readLine();
-		//} catch (IOException ex) {
-			//ex.printStackTrace();
-		//}
-		//return prompt;
-	//}
+
+	String getPrompt() {
+		String prompt = "";
+		try {
+			prompt = reader.readLine();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return prompt;
+	}
 
 	String drawBoard() {
 		StringBuilder builder = new StringBuilder("Game board: \n");
