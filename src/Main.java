@@ -17,7 +17,7 @@ public class Main {
 				markerOk = true;
 				game.setMarker1(marker.toCharArray()[0]);
 			} else {
-				System.out.println("Invalid marker, try again");
+				System.out.println("Invalid marker");
 			}
 		}
 		markerOk = false;
@@ -28,7 +28,7 @@ public class Main {
 				markerOk = true;
 				game.setMarker2(marker.toCharArray()[0]);
 			} else {
-				System.out.println("Invalid marker, try again");
+				System.out.println("Invalid marker");
 			}
 		}
 
