@@ -17,17 +17,18 @@ public class TicTacToe {
 	 * @param args
 	 */
 		// TODO Auto-generated method stub
-		private char[][] board = new char[3][3];
-	    private String player1;
-	    private String player2;
-	    private int currentPlayer;
-	    private char marker1;
-	    private char marker2;
-	    private int plays;
-	    private BufferedReader reader =
+		 char[][] board = new char[3][3];
+	     String player1;
+	     String player2;
+	     int currentPlayer;
+	     char marker1;
+	     char marker2;
+	     int plays;
+	     
+	     BufferedReader reader =
 	            new BufferedReader(new InputStreamReader(System.in));
 	 
-	    protected void init() {
+	     void init() {
 	        int counter = 0;
 	        for (int i = 0; i < 3; i++) {
 	            for (int i1 = 0; i1 < 3; i1++) {
