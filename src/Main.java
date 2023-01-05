@@ -1,17 +1,33 @@
+import java.io.IOException;
 
 public class Main {
 	public void play() {
 
 		TicTacToe game = new TicTacToe();
-
+		
+	
 		System.out.println("<< Welcome to Tic Tac Toe game>>.");
+		
+		// Ask the user if they want to resume a saved game
+        System.out.print("Do you want to resume a saved game? (y/n) ");
+        try {
+            String response = game.reader.readLine();
+            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
+                game.resume();
+            } else {
+                game.init();
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading user input: " + e.getMessage());
+        }
+		
 		System.out.print("Enter player one's name: ");
 		game.setPlayer1(game.getPrompt());
 		System.out.print("Enter player two's name: ");
 		game.setPlayer2(game.getPrompt());
 		boolean markerOk = false;
 		while (!markerOk) {
-			System.out.print("Select any letter as " + game.getPlayer1() + "': ");
+			System.out.print("Choose X OR O <" + game.getPlayer1() + ">: ");
 			String marker = game.getPrompt();
 			if (marker.length() == 1 && Character.isLetter(marker.toCharArray()[0])) {
 				markerOk = true;
@@ -22,7 +38,7 @@ public class Main {
 		}
 		markerOk = false;
 		while (!markerOk) {
-			System.out.print("Select any letter as " + game.getPlayer2() + "': ");
+			System.out.print("Choose X OR O <" + game.getPlayer2() + ">: ");
 			String marker = game.getPrompt();
 			if (marker.length() == 1 && Character.isLetter(marker.toCharArray()[0])) {
 				markerOk = true;
@@ -42,13 +58,14 @@ public class Main {
 			System.out.println();
 			System.out.println(game.drawBoard());
 			System.out.println();
-
+			
+	
 			String player = null;
 			while (!game.winner() && game.getPlays() < 9) {
 				player = game.getCurrentPlayer() == 1 ? game.getPlayer1() : game.getPlayer2();
 				boolean validPick = false;
 				while (!validPick) {
-					System.out.print("It is " + player + "'Please enter the number: ");
+					System.out.print("<" + player +" >ol" +"'Please enter the number: ");
 					String square = game.getPrompt();
 					if (square.length() == 1 && Character.isDigit(square.toCharArray()[0])) {
 						int pick = 0;
@@ -62,12 +79,14 @@ public class Main {
 					if (!validPick) {
 						System.out.println("can not be selected!!");
 					}
+					
 				}
 				game.switchPlayers();
 				System.out.println();
 				System.out.println(game.drawBoard());
 				System.out.println();
 			}
+		
 			if (game.winner()) {
 				System.out.println("Game Over - " + player + " WINS!!!");
 			} else {
@@ -85,6 +104,8 @@ public class Main {
 	public static void main(String[] args) {
 		Main main = new Main();
 		main.play();
+		
+		
 	}
 
 }
