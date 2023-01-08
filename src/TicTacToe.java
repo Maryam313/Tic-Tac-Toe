@@ -28,9 +28,9 @@ public class TicTacToe {
 
 	void init() {
 		int counter = 0;
-		for (int i = 0; i < 3; i++) {
+		for (int row = 0; row < 3; row++) {
 			for (int index = 0; index < 3; index++) {
-				board[i][index] = Character.forDigit(++counter, 10);
+				board[row][index] = Character.forDigit(++counter, 10);
 			}
 		}
 		currentPlayer = 1;
@@ -47,10 +47,10 @@ public class TicTacToe {
 	}
 
 	boolean placeMarker(int play) {
-		for (int i = 0; i < 3; i++) {
+		for (int row = 0; row < 3; row++) {
 			for (int index = 0; index < 3; index++) {
-				if (board[i][index] == Character.forDigit(play, 10)) {
-					board[i][index] = (getCurrentPlayer() == 1) ? getMarker1() : getMarker2();
+				if (board[row][index] == Character.forDigit(play, 10)) {
+					board[row][index] = (getCurrentPlayer() == 1) ? getMarker1() : getMarker2();
 					return true;
 				}
 			}
@@ -61,15 +61,15 @@ public class TicTacToe {
 	boolean winner() {
 		// Checking rows
 		char current = ' ';
-		for (int i = 0; i < 3; i++) {
+		for (int row = 0; row < 3; row++) {
 			int index = 0;
 			for (index = 0; index < 3; index++) {
-				if (!Character.isLetter(board[i][index])) {
+				if (!Character.isLetter(board[row][index])) {
 					break;
 				}
 				if (index == 0) {
-					current = board[i][index];
-				} else if (current != board[i][index]) {
+					current = board[row][index];
+				} else if (current != board[row][index]) {
 					break;
 				}
 				if (index == 2) {
@@ -79,16 +79,16 @@ public class TicTacToe {
 			}
 		}
 		// Checking columns
-		for (int i = 0; i < 3; i++) {
+		for (int row = 0; row < 3; row++) {
 			current = ' ';
 			int index = 0;
 			for (index = 0; index < 3; index++) {
-				if (!Character.isLetter(board[index][i])) {
+				if (!Character.isLetter(board[index][row])) {
 					break;
 				}
 				if (index == 0) {
-					current = board[index][i];
-				} else if (current != board[index][i]) {
+					current = board[index][row];
+				} else if (current != board[index][row]) {
 					break;
 				}
 				if (index == 2) {
@@ -128,9 +128,9 @@ public class TicTacToe {
 
 	String drawBoard() {
 		StringBuilder builder = new StringBuilder("Game board: \n");
-		for (int i = 0; i < 3; i++) {
+		for (int row = 0; row < 3; row++) {
 			for (int index = 0; index < 3; index++) {
-				builder.append("[" + board[i][index] + "]");
+				builder.append("[" + board[row][index] + "]");
 			}
 			builder.append("\n");
 		}
