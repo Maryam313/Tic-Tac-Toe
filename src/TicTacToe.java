@@ -1,9 +1,6 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 
 
@@ -140,44 +137,46 @@ public class TicTacToe {
 		return builder.toString();
 	}
 
-	void saveGame() {
-	    try {
-	        FileWriter fileWriter = new FileWriter("saved_game.txt");
-	        // Convert the game state to a string and write it to the file
-	        String gameState = board + "," + currentPlayer + "," + plays + "," + marker1 + "," + marker2;
-	        fileWriter.write(gameState + "\n");
-	        fileWriter.close();
-	    } catch (IOException e) {
-	        System.out.println("Error saving game: " + e.getMessage());
-	    }
-	}
-
-	
-	    	Scanner scan=new Scanner("saved_game.txt");
-	        // Read the game state string from the file and parse it to extract the values
-	    	void resume() {
-	    	    try {
-	    	        FileReader fileReader = new FileReader("saved_game.txt");
-	    	        // Read the game state string from the file and parse it to extract the values
-	    	        //String gameState = fileReader.readLine();
-	    		    String gameState = scan.nextLine();
-	    	        String[] values = gameState.split(",");
-	    	        // Parse the board string and convert it back to a character array
-	    	        board = new char[3][3];
-	    	        for (int i = 0; i < 3; i++) {
-	    	            for (int j = 0; j < 3; j++) {
-	    	                board[i][j] = values[0].charAt(i * 3 + j);
-	    	            }
-	    	        }
-	    	        currentPlayer = Integer.parseInt(values[1]);
-	    	        plays = Integer.parseInt(values[2]);
-	    	        marker1 = values[3].charAt(0);
-	    	        marker2 = values[4].charAt(0);
-	    	        fileReader.close();
-	    	    } catch (IOException e) {
-	    	        System.out.println("Error resuming game: " + e.getMessage());
-	    	    }
-	    	}
+	//public void saveGame() {
+//		if(dataStore.exists()) {
+//
+//	    try {
+//	        FileWriter fileWriter = new FileWriter("saved_game.txt");
+//	        // Convert the game state to a string and write it to the file
+//	        String gameState = board + "," + currentPlayer + "," + plays + "," + marker1 + "," + marker2;
+//	        fileWriter.write(gameState + "\n");
+//	        fileWriter.close();
+//	    } catch (IOException e) {
+//	        System.out.println("Error saving game: " + e.getMessage());
+//	    }
+//	}
+//
+//	
+//	    	Scanner scan=new Scanner("saved_game.txt");
+//	        // Read the game state string from the file and parse it to extract the values
+//	    	void resume() {
+//	    	    try {
+//	    	        FileReader fileReader = new FileReader("saved_game.txt");
+//	    	        // Read the game state string from the file and parse it to extract the values
+//	    	        //String gameState = fileReader.readLine();
+//	    		    String gameState = scan.nextLine();
+//	    	        String[] values = gameState.split(",");
+//	    	        // Parse the board string and convert it back to a character array
+//	    	        board = new char[3][3];
+//	    	        for (int i = 0; i < 3; i++) {
+//	    	            for (int j = 0; j < 3; j++) {
+//	    	                board[i][j] = values[0].charAt(i * 3 + j);
+//	    	            }
+//	    	        }
+//	    	        currentPlayer = Integer.parseInt(values[1]);
+//	    	        plays = Integer.parseInt(values[2]);
+//	    	        marker1 = values[3].charAt(0);
+//	    	        marker2 = values[4].charAt(0);
+//	    	        fileReader.close();
+//	    	    } catch (IOException e) {
+//	    	        System.out.println("Error resuming game: " + e.getMessage());
+//	    	    }
+//	    	}
 
 
 
