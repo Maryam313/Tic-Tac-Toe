@@ -2,19 +2,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-
-
 /**
- * @author LAP-2
+ * @author Maryam AlAjmi..
  *
  */
 public class TicTacToe {
 
 	/**
-	 * This class  allows the user to play a tic tac toe
+	 * This class allows the user to play a tic tac toe
 	 */
-	 
-	 
+
 	char[][] board = new char[3][3];
 	String player1;
 	String player2;
@@ -24,7 +21,6 @@ public class TicTacToe {
 	int plays;
 
 	BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-	
 
 	void init() {
 		int counter = 0;
@@ -136,8 +132,6 @@ public class TicTacToe {
 		}
 		return builder.toString();
 	}
-
-	
 
 	// Getter and Setter
 	public int getCurrentPlayer() {

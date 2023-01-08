@@ -132,9 +132,9 @@ public class Main {
 			String[] values = gameState.split(",");
 			// Parse the board string and convert it back to a character array
 			board = new char[3][3];
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 3; j++) {
-					board[i][j] = values[0].charAt(i * 3 + j);
+			for (int row = 0; row < 3; row++) {
+				for (int col = 0; col < 3; col++) {
+					board[row][col] = values[0].charAt(row * 3 + col);
 				}
 			}
 			currentPlayer = Integer.parseInt(values[1]);
