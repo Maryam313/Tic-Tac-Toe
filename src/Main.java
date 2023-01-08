@@ -10,20 +10,10 @@ public class Main {
 		
 	
 		System.out.println("<< Welcome to Tic Tac Toe game>>.");
+		System.out.print("-----------------------------");
 		
 //		// Ask the user if they want to resume a saved game
-//
-//        System.out.print("Do you want to resume a saved game? (y/n) ");
-//        try {
-//            String response = game.reader.readLine();
-//            if (response.equalsIgnoreCase("y") || response.equalsIgnoreCase("yes")) {
-//                game.resume();
-//            } else {
-//                game.init();
-//            }
-//        } catch (IOException e) {
-//            System.out.println("Error reading user input: " + e.getMessage());
-//        }
+
 		
 		System.out.print("Enter player one's name: ");
 		game.setPlayer1(game.getPrompt());
